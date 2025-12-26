@@ -1,0 +1,42 @@
+# macOS
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual environments
+venv/
+.venv/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# App-specific generated data
+chroma_db/
+wav/
+src/audio/
+app/__pycache__/
+core/__pycache__/
+__pycache__/
+
+# Large model files
+UK_Law_Real_Final.gguf
+
+# Editor/project settings
+.vscode/
+.idea/
+
+# Backup folders
+.git_backup*/
+*.gguf
+*.pdf
+wav
+audio/
+other.txt
+chroma_db/
+legal_docs/
