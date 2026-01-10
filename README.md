@@ -8,6 +8,18 @@
 
 - Setup & Installation: See [SETUP.md](SETUP.md)
 
+## 🎞️ Interface Preview
+
+<div align="center">
+  
+![Main Welcome Page](photos/photo1.jpeg)
+*Welcome to ContractLawAI-UK - Your offline AI-powered legal research companion for UK contract law*
+
+![Legal Assistant Interface](photos/photo2.png)
+*Initial Legal Assistant - Ask questions by text or voice and receive IRAC-structured answers*
+
+</div>
+
 ## 👀 At a Glance
 - IRAC-first answers with domain routing for goods, services, and digital content.
 - Hybrid retrieval (vector + BM25) with cross-encoder reranking and RAGAS evaluation.
