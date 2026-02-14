@@ -2,85 +2,72 @@
 
 ⚖️ Offline AI Legal Research Assistant for UK Contract Law  
 🧠 IRAC-Grounded Reasoning with Hybrid RAG  
-🔊 Voice-Enabled, Local-First, No External APIs  
-
----
-
-- Setup & Installation: See [SETUP.md](SETUP.md)
+🔊 Voice-Enabled, Local-First, No External APIs
 
 ## 🎞️ Interface Preview
 
 <div align="center">
-  
-![Main Welcome Page](photos/photo1.jpeg)
-*Welcome to ContractLawAI-UK - Your offline AI-powered legal research companion for UK contract law*
 
-![Legal Assistant Interface](photos/photo2.png)
-*Initial Legal Assistant - Ask questions by text or voice and receive IRAC-structured answers*
+![alt text](photos/photo1.jpeg)
+
+Offline AI-powered legal research companion for UK contract law
+
+![alt text](photos/photo2.png)
+
+IRAC-structured answers provided via text or voice interaction
 
 </div>
 
-## 👀 At a Glance
-- IRAC-first answers with domain routing for goods, services, and digital content.
-- Hybrid retrieval (vector + BM25) with cross-encoder reranking and RAGAS evaluation.
-- Fully local inference on quantized GGUF weights via Ollama—privacy by default.
-- Streamlit UI with mic input, reasoning visibility, and cached audio playback.
-
 ## 🚀 Overview
-**ContractLawAI-UK** is an offline, AI-powered legal research assistant that simulates a junior consultant for **UK contract law**. Ask questions by text or voice and receive **IRAC-structured answers** grounded in **statutes and case law** you provide. Everything runs **fully on-device** through Ollama with quantized GGUF weights, keeping sensitive legal queries private and predictable.
 
-The system combines **hybrid retrieval (vector + keyword)**, **cross-encoder reranking**, and **automated RAG evaluation** to reduce hallucinations and enforce disciplined reasoning. Built for law students, researchers, and innovation teams, it prioritizes legal rigor over generic chatbot fluency.
+ContractLawAI-UK is an offline legal research assistant designed to simulate a junior consultant for UK contract law. The system provides IRAC-structured answers (Issue, Rule, Application, Conclusion) grounded in provided statutes and case law.
+
+Everything runs fully on-device using Ollama and quantized GGUF weights, ensuring total privacy for sensitive legal queries. By combining hybrid retrieval, cross-encoder reranking, and RAGAS evaluation, the system prioritizes legal rigor and citation accuracy over generic chat.
 
 ## 💡 Core Features
-### 🧠 IRAC-Enforced Legal Reasoning
-- Answers follow **Issue → Rule → Application → Conclusion**, guided by domain logic for goods, services, and digital content.
-- Prevents unstructured LLM replies by constraining reasoning paths and citing retrieved sources.
 
-### 📚 Advanced RAG Architecture
-- **Hybrid Search**: vector retrieval + BM25 keyword matching, blended per query.
-- **Cross-Encoder Reranking** for statute/case relevance refinement.
-- PDF ingestion with domain-aware indexing and retrieval graph rebuilds.
-- Retrieval accuracy validated with **RAGAS**, surfacing weak spots early.
+### 🧠 IRAC-Enforced Reasoning
+- Mandatory Issue → Rule → Application → Conclusion structure for all legal responses.
+- Domain routing specifically optimized for goods, services, and digital content law.
+- Strict citation requirements to link answers directly to retrieved legal sources.
 
-### 🔒 Fully Local Inference
-- Fine-tuned foundation model via **LoRA/QLoRA**; quantized **GGUF** served by **Ollama**.
-- Zero external APIs; deterministic cost and latency; private by default.
-- Supports CPU-only runs; benefits from GPU if available.
+### 📚 Advanced Hybrid RAG
+- Multi-Stage Retrieval: Combines Vector search (Chroma/FAISS) with BM25 keyword matching.
+- Reranking: Cross-Encoder models refine statute and case law relevance before generation.
+- Evaluation: Integrated RAGAS pipeline to validate retrieval accuracy and reduce hallucinations.
 
-### 🔊 Voice Interaction
-- Real-time **SpeechRecognition** for dictation; **gTTS** for read-aloud responses.
-- ffmpeg-backed conversions and cached audio snippets for fast playback.
+### 🔒 Local-First Privacy
+- Zero external API calls; all data processing and inference stay on the local machine.
+- Powered by Ollama using quantized GGUF weights.
+- Supports LoRA/QLoRA for domain-specific fine-tuning.
 
-### 🖥️ Streamlit Research Interface
-- Session-based chat memory with retrieval visibility.
-- Clear visualization of reasoning chains and source snippets.
-- Controls to rebuild indexes, clear caches, and toggle demo mode.
-
-### 🧪 Quality & Safety
-- Hybrid/rerank pipelines instrumented for retrieval stats.
-- Guardrails around domain routing to avoid off-topic answers.
-- On-device processing keeps client materials confidential.
+### 🔊 Voice & UI Experience
+- Voice Interaction: Speech-to-text for hands-free queries and gTTS for audio read-backs.
+- Research Interface: Streamlit-based dashboard with session memory and reasoning chain visibility.
+- Index Management: UI controls to rebuild retrieval graphs and ingest new PDF documents.
 
 ## 🏗️ Architecture
-Streamlit Frontend (text + mic input, session state, playback)  
-→ Retrieval Layer (Chroma/FAISS vectors + BM25, cross-encoder rerank)  
-→ IRAC Reasoner (issue spotting, rule citation, analysis, conclusion)  
-→ Local Model Serving (Ollama running quantized GGUF weights)  
-→ Voice Output (gTTS generation, ffmpeg conversion, cached playback)
+
+1. Streamlit UI (Text/Voice Input)
+2. Hybrid Retrieval (Chroma + BM25 + Cross-Encoder Rerank)
+3. IRAC Reasoner (Statute Citation & Analysis)
+4. Ollama (Local GGUF Inference)
+5. Voice Output (gTTS & Audio Playback)
 
 ## 🛠️ Tech Stack
-| Layer | Technologies |
-|-------|--------------|
-| UI & UX | Streamlit, session state, cached retrieval graph |
-| Retrieval | Chroma/FAISS, BM25, cross-encoder reranker, Hybrid Search |
-| Modeling | Fine-tuned foundation model via LoRA/QLoRA, GGUF served by Ollama |
-| Audio | SpeechRecognition, gTTS, ffmpeg utilities |
-| Evaluation | RAGAS for retrieval/answer quality checks |
-| Data | PDF ingestion from `legal_docs/` organized by legal domain |
 
-## 🌟 What Sets It Apart
-- End-to-end **local** stack: ingestion, retrieval, generation, evaluation, and audio never leave the machine.
-- True **hybrid RAG** with reranking and RAGAS-backed validation, not just vector search.
-- **IRAC enforcement** with domain routing, keeping answers structured and citations explicit.
-- **Voice-ready** loop for hands-free research and quick read-backs.
-- **Operationally simple**: one setup path, cached assets, and controllable indexes via the UI.
+| Layer | Technologies |
+|---|---|
+| Frontend | Streamlit |
+| Retrieval | Chroma, FAISS, BM25, Cross-Encoders |
+| Modeling | Ollama, GGUF, LoRA, QLoRA |
+| Audio | SpeechRecognition, gTTS, FFmpeg |
+| Evaluation | RAGAS |
+| Data | Python, PDFPlumber, NumPy, Pandas |
+
+## 🌟 Why This Project Stands Out
+
+- ✅ Total Privacy: End-to-end local stack ensures client materials and queries never leave the device.
+- ✅ Legal Rigor: Moves beyond simple chat by enforcing the IRAC framework used by legal professionals.
+- ✅ Validated Retrieval: Uses industry-standard RAGAS metrics to ensure citations are grounded in fact.
+- ✅ Accessibility: Integrated voice loop allows for hands-free legal research and quick read-backs.
